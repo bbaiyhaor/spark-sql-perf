@@ -79,7 +79,7 @@ def time[R](block: => R): R = {
 // COMMAND ----------
 
 // FOR INSTALLING TPCH DBGEN (with the stdout patch)
-def installDBGEN(url: String = "https://github.com/databricks/tpch-dbgen.git", useStdout: Boolean = true, baseFolder: String = "/tmp")(i: java.lang.Long): String = {
+def installDBGEN(url: String = "https://github.com/bbaiyhaor/tpch-dbgen.git", useStdout: Boolean = true, baseFolder: String = "/tmp")(i: java.lang.Long): String = {
   // check if we want the revision which makes dbgen output to stdout
   val checkoutRevision: String = if (useStdout) "git checkout 0469309147b42abac8857fa61b4cf69a6d3128a8 -- bm_utils.c" else ""
   Seq("mkdir", "-p", baseFolder).!
@@ -106,7 +106,7 @@ echo "OK"
 
 // FOR INSTALLING TPCDS DSDGEN (with the stdout patch)
 // Note: it assumes Debian/Ubuntu host, edit package manager if not
-def installDSDGEN(url: String = "https://github.com/databricks/tpcds-kit.git", useStdout: Boolean = true, baseFolder: String = "/tmp")(i: java.lang.Long): String = {
+def installDSDGEN(url: String = "https://github.com/bbaiyhaor/tpcds-kit.git", useStdout: Boolean = true, baseFolder: String = "/tmp")(i: java.lang.Long): String = {
   Seq("mkdir", "-p", baseFolder).!
   val pw = new PrintWriter(new File(s"${baseFolder}/dsdgen_$i.sh" ))
   pw.write(s"""
@@ -151,7 +151,7 @@ def getBenchmarkData(benchmark: String, scaleFactor: String) = benchmark match {
   case "TPCDS" if !TPCDSUseLegacyOptions => (
     s"tpcds_sf${scaleFactor}_${fileFormat}${dbSuffix}",
     new TPCDSTables(spark.sqlContext, dsdgenDir = s"${baseDatagenFolder}/dsdgen", scaleFactor = scaleFactor, useDoubleForDecimal = false, useStringForDate = false),
-    s"$baseLocation/tpcds-2.4/sf${scaleFactor}_${fileFormat}")
+    s"$baseLocation/tpcds-3.2/sf${scaleFactor}_${fileFormat}")
   
   case "TPCDS" if TPCDSUseLegacyOptions => (
     s"tpcds_sf${scaleFactor}_nodecimal_nodate_withnulls${dbSuffix}",

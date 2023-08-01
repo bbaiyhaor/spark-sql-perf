@@ -31,7 +31,7 @@ class TPCDS(@transient sqlContext: SQLContext)
   with ImpalaKitQueries
   with SimpleQueries
   with Tpcds_1_4_Queries
-  with Tpcds_2_4_Queries
+  with Tpcds_3_2_Queries
   with Serializable {
 
   def this() = this(SparkSession.builder.getOrCreate().sqlContext)

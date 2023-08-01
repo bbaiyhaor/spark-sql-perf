@@ -1,20 +1,20 @@
 // Your sbt build file. Guides on how to write one can be found at
 // http://www.scala-sbt.org/0.13/docs/index.html
+//import sbt.project
+resolvers += "Spark Packages Repository" at "https://repos.spark-packages.org/"
 
 name := "spark-sql-perf"
-
-organization := "com.databricks"
 
 scalaVersion := "2.12.10"
 
 crossScalaVersions := Seq("2.12.10")
 
-sparkPackageName := "databricks/spark-sql-perf"
+sparkPackageName := "com.databricks/spark-sql-perf"
 
 // All Spark Packages need a license
 licenses := Seq("Apache-2.0" -> url("http://opensource.org/licenses/Apache-2.0"))
 
-sparkVersion := "3.0.0"
+sparkVersion := "3.4.0"
 
 sparkComponents ++= Seq("sql", "hive", "mllib")
 
@@ -88,7 +88,7 @@ lazy val setupDbcRelease = ReleaseStep(
   action = { st: State =>
     val extracted = Project.extract(st)
     val newSettings = extracted.structure.allProjectRefs.map { ref =>
-      dbcLibraryPath in ref := "/databricks/spark/sql/lib"
+      dbcLibraryPath in ref := "/spark/sql/lib"
     }
 
     reapply(newSettings, st)
@@ -108,36 +108,16 @@ licenses += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0"))
 releasePublishArtifactsAction := PgpKeys.publishSigned.value
 
 pomExtra := (
-      <url>https://github.com/databricks/spark-sql-perf</url>
+      <url>https://github.com/bbaiyhaor/spark-sql-perf</url>
       <scm>
-        <url>git@github.com:databricks/spark-sql-perf.git</url>
-        <connection>scm:git:git@github.com:databricks/spark-sql-perf.git</connection>
+        <url>git@github.com:bbaiyhaor/spark-sql-perf.git</url>
+        <connection>scm:git:git@github.com:bbaiyhaor/spark-sql-perf.git</connection>
       </scm>
       <developers>
         <developer>
-          <id>marmbrus</id>
-          <name>Michael Armbrust</name>
-          <url>https://github.com/marmbrus</url>
-        </developer>
-        <developer>
-          <id>yhuai</id>
-          <name>Yin Huai</name>
-          <url>https://github.com/yhuai</url>
-        </developer>
-        <developer>
-          <id>nongli</id>
-          <name>Nong Li</name>
-          <url>https://github.com/nongli</url>
-        </developer>
-        <developer>
-          <id>andrewor14</id>
-          <name>Andrew Or</name>
-          <url>https://github.com/andrewor14</url>
-        </developer>
-        <developer>
-          <id>davies</id>
-          <name>Davies Liu</name>
-          <url>https://github.com/davies</url>
+          <id>bbaiyhaor</id>
+          <name>bbaiyhaor</name>
+          <url>https://github.com/bbaiyhaor</url>
         </developer>
       </developers>
     )

@@ -54,8 +54,8 @@ JIRA_PASSWORD = os.environ.get("JIRA_PASSWORD", "")
 GITHUB_OAUTH_KEY = os.environ.get("GITHUB_OAUTH_KEY")
 
 
-GITHUB_BASE = "https://github.com/databricks/spark-sql-perf/pull"
-GITHUB_API_BASE = "https://api.github.com/repos/databricks/spark-sql-perf"
+GITHUB_BASE = "https://github.com/bbaiyhaor/spark-sql-perf/pull"
+GITHUB_API_BASE = "https://api.github.com/repos/bbaiyhaor/spark-sql-perf"
 JIRA_BASE = "https://issues.apache.org/jira/browse"
 JIRA_API_BASE = "https://issues.apache.org/jira"
 # Prefix added to temporary branches

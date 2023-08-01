@@ -22,7 +22,7 @@ val iterations = 2 // how many times to run the whole set of queries.
 val timeout = 60 // timeout in hours
 
 val query_filter = Seq() // Seq() == all queries
-//val query_filter = Seq("q1-v2.4", "q2-v2.4") // run subset of queries
+//val query_filter = Seq("q1-v3.2", "q2-v3.2") // run subset of queries
 val randomizeQueries = false // run queries in a random order. Recommended for parallel runs.
 
 // detailed results will be written as JSON to this location.
@@ -46,8 +46,8 @@ import com.databricks.spark.sql.perf.tpcds.TPCDS
 val tpcds = new TPCDS (sqlContext = sqlContext)
 def queries = {
   val filtered_queries = query_filter match {
-    case Seq() => tpcds.tpcds2_4Queries
-    case _ => tpcds.tpcds2_4Queries.filter(q => query_filter.contains(q.name))
+    case Seq() => tpcds.tpcds3_2Queries
+    case _ => tpcds.tpcds3_2Queries.filter(q => query_filter.contains(q.name))
   }
   if (randomizeQueries) scala.util.Random.shuffle(filtered_queries) else filtered_queries
 }
